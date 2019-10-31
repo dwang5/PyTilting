@@ -6,7 +6,7 @@ Background
 
 Please see the following papers regardning the theoretical background.
 
-* "Generation of low-symmetry perovskite structures for firsts-principles computation”, by N. Xie, J. Zhang, X. Chen, and D. Wang. https://arxiv.org/abs/1910.04507
+* "Generation of low-symmetry perovskite structures for firsts-principles computation”, by N. Xie, *et al* https://arxiv.org/abs/1910.04507
 
 * A.M. Glazer. "The Classification of Tilted Octahedra in Perovskite", Acta Cryst.: Sect. B, 28, 3384 (1972).
 
