@@ -1,0 +1,292 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>puc &mdash; pyTilting v1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> pyTilting
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Theory.html">Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../program.html">Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../License.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyTilting</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>puc</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for puc</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: Common_structures_for_Perovskites.</span>
+
+<span class="sd">.. moduleauthor:: Dawei Wang &lt;dwang5@zoho.com&gt;</span>
+
+<span class="sd">This module provides the functions for primitive unit cells of perovskites.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<div class="viewcode-block" id="Puc"><a class="viewcode-back" href="../program.html#puc.Puc">[docs]</a><span class="k">class</span> <span class="nc">Puc</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This module provides basic class for primitive unit cells (PUC) of perovskites and some basic operations on the PUC level</span>
+<span class="sd">    to actuate the distortion specified in the &quot;Distortion&quot; class.</span>
+
+<span class="sd">    :param symbols: specifies the symbols of atoms in one primitive unit cell.</span>
+
+<span class="sd">    :param shift_index: an integer vector indicating the shift from the origin. It is used to indiacte the position of this unit cell in the supercell. </span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbols</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="s1">&#39;O&#39;</span><span class="p">],</span><span class="n">shift_index</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">symbols</span><span class="o">=</span><span class="n">symbols</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="p">{</span><span class="s1">&#39;tag&#39;</span><span class="p">:</span> <span class="n">symbols</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;pos&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">]},</span>
+                <span class="p">{</span><span class="s1">&#39;tag&#39;</span><span class="p">:</span> <span class="n">symbols</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;pos&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">]},</span>
+                <span class="p">{</span><span class="s1">&#39;tag&#39;</span><span class="p">:</span> <span class="n">symbols</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;pos&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">]},</span>
+                <span class="p">{</span><span class="s1">&#39;tag&#39;</span><span class="p">:</span> <span class="n">symbols</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;pos&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.0</span><span class="p">]},</span>
+                <span class="p">{</span><span class="s1">&#39;tag&#39;</span><span class="p">:</span> <span class="n">symbols</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;pos&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">]}</span>
+                <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shift_index</span><span class="o">=</span><span class="n">shift_index</span>
+
+    <span class="k">def</span> <span class="nf">bravais_basis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1">#return absolute position</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">],</span><span class="bp">self</span><span class="o">.</span><span class="n">shift_index</span><span class="p">),</span> 
+            <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">))</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span><span class="n">p</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">element_basis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1">#print atoms symbols</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;tag&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">rotate_atom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">atom</span><span class="p">,</span><span class="n">omega</span><span class="p">,</span><span class="n">covera</span><span class="p">):</span>
+        <span class="c1">#define the rotation of the oxygen octahedron</span>
+        <span class="k">if</span> <span class="n">atom</span><span class="p">[</span><span class="s1">&#39;tag&#39;</span><span class="p">]</span><span class="o">==</span><span class="bp">self</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span>
+            <span class="n">pos</span><span class="o">=</span><span class="n">atom</span><span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">]</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">omega</span><span class="p">)</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+            <span class="n">pos1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="n">covera</span><span class="p">]))</span><span class="o">+</span><span class="n">b</span>
+            <span class="n">atom</span><span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pos1</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">atom</span>
+
+<div class="viewcode-block" id="Puc.rotate"><a class="viewcode-back" href="../program.html#puc.Puc.rotate">[docs]</a>    <span class="k">def</span> <span class="nf">rotate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">omega</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">covera</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Only O atoms are rotated.</span>
+
+<span class="sd">        :param omega: Rotation angle of oxygen octahedron in **a**-, **b**-, **c**-axis.</span>
+<span class="sd">        :param covera: The ratio of the length of unit cell along **c**-axis to **a**-axis, which indicates a small distortion of the unit cell .</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+                <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">rotate_atom</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">omega</span><span class="p">,</span><span class="n">covera</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">)</span>
+                <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Puc.shift"><a class="viewcode-back" href="../program.html#puc.Puc.shift">[docs]</a>    <span class="k">def</span> <span class="nf">shift</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">u</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">local_mode</span><span class="o">=</span><span class="p">[[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">]]):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param u: Magnitudes of the vibration in **a**-, **b**-, **c**-axis.</span>
+<span class="sd">        :param local_mode: Order is in delta_A, delta_B, delta_O-perp, delta_O-perp, delta_O-parallel</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># dumb but effective method.</span>
+        <span class="n">dA</span><span class="o">=</span><span class="n">local_mode</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">dB</span><span class="o">=</span><span class="n">local_mode</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">dOp</span><span class="o">=</span><span class="n">local_mode</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">dOq</span><span class="o">=</span><span class="n">local_mode</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> 
+        <span class="c1"># A little math show the following works.</span>
+
+        <span class="n">dpq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+            <span class="p">[</span><span class="n">dA</span><span class="p">,</span><span class="n">dA</span><span class="p">,</span><span class="n">dA</span><span class="p">],</span>
+            <span class="p">[</span><span class="n">dB</span><span class="p">,</span><span class="n">dB</span><span class="p">,</span><span class="n">dB</span><span class="p">],</span>
+            <span class="p">[</span><span class="n">dOq</span><span class="p">,</span><span class="n">dOp</span><span class="p">,</span><span class="n">dOp</span><span class="p">],</span>
+            <span class="p">[</span><span class="n">dOp</span><span class="p">,</span><span class="n">dOq</span><span class="p">,</span><span class="n">dOp</span><span class="p">],</span>
+            <span class="p">[</span><span class="n">dOp</span><span class="p">,</span><span class="n">dOp</span><span class="p">,</span><span class="n">dOq</span><span class="p">]</span>
+            <span class="p">])</span>
+        <span class="n">du</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+            <span class="p">[</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">0.</span><span class="p">,</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mf">0.</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
+            <span class="p">])</span>
+
+        <span class="n">rslt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">dpq</span><span class="p">,</span><span class="n">du</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;pos&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">rslt</span><span class="p">[</span><span class="n">i</span><span class="p">]</span></div>
+            <span class="c1">#print atoms positions</span>
+
+    <span class="k">def</span> <span class="nf">print_atoms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">))</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, D. Wang
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
